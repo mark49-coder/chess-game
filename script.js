@@ -4,239 +4,30 @@ let main = {
     turn: 'w',
     selectedpiece: '',
     highlighted: [],
-    pieces: {
-      w_king: {
-        position: '5_1',
-        img: '&#9812;',
-        captured: false,
-        moved: false,
-        type: 'w_king'
-        
-      },
-      w_queen: {
-        position: '4_1',
-        img: '&#9813;',
-        captured: false,
-        moved: false,
-        type: 'w_queen'
-      },
-      w_bishop1: {
-        position: '3_1',
-        img: '&#9815;',
-        captured: false,
-        moved: false,
-        type: 'w_bishop'
-      },
-      w_bishop2: {
-        position: '6_1',
-        img: '&#9815;',
-        captured: false,
-        moved: false,
-        type: 'w_bishop'
-      },
-      w_knight1: {
-        position: '2_1',
-        img: '&#9816;',
-        captured: false,
-        moved: false,
-        type: 'w_knight'
-      },
-      w_knight2: {
-        position: '7_1',
-        img: '&#9816;',
-        captured: false,
-        moved: false,
-        type: 'w_knight'
-      },
-      w_rook1: {
-        position: '1_1',
-        img: '&#9814;',
-        captured: false,
-        moved: false,
-        type: 'w_rook'
-      },
-      w_rook2: {
-        position: '8_1',
-        img: '&#9814;',
-        captured: false,
-        moved: false,
-        type: 'w_rook'
-      },
-      w_pawn1: {
-        position: '1_2',
-        img: '&#9817;',
-        captured: false,
-        type: 'w_pawn',
-        moved: false
-      },
-      w_pawn2: {
-        position: '2_2',
-        img: '&#9817;',
-        captured: false,
-        type: 'w_pawn',
-        moved: false
-      },
-      w_pawn3: {
-        position: '3_2',
-        img: '&#9817;',
-        captured: false,
-        type: 'w_pawn',
-        moved: false
-      },
-      w_pawn4: {
-        position: '4_2',
-        img: '&#9817;',
-        captured: false,
-        type: 'w_pawn',
-        moved: false
-      },
-      w_pawn5: {
-        position: '5_2',
-        img: '&#9817;',
-        captured: false,
-        type: 'w_pawn',
-        moved: false
-      },
-      w_pawn6: {
-        position: '6_2',
-        img: '&#9817;',
-        captured: false,
-        type: 'w_pawn',
-        moved: false
-      },
-      w_pawn7: {
-        position: '7_2',
-        img: '&#9817;',
-        captured: false,
-        type: 'w_pawn',
-        moved: false
-      },
-      w_pawn8: {
-        position: '8_2',
-        img: '&#9817;',
-        captured: false,
-        type: 'w_pawn',
-        moved: false
-      },
-
-      b_king: {
-        position: '5_8',
-        img: '&#9818;',
-        captured: false,
-        moved: false,
-        type: 'b_king'
-      },
-      b_queen: {
-        position: '4_8',
-        img: '&#9819;',
-        captured: false,
-        moved: false,
-        type: 'b_queen'
-      },
-      b_bishop1: {
-        position: '3_8',
-        img: '&#9821;',
-        captured: false,
-        moved: false,
-        type: 'b_bishop'
-      },
-      b_bishop2: {
-        position: '6_8',
-        img: '&#9821;',
-        captured: false,
-        moved: false,
-        type: 'b_bishop'
-      },
-      b_knight1: {
-        position: '2_8',
-        img: '&#9822;',
-        captured: false,
-        moved: false,
-        type: 'b_knight'
-      },
-      b_knight2: {
-        position: '7_8',
-        img: '&#9822;',
-        captured: false,
-        moved: false,
-        type: 'b_knight'
-      },
-      b_rook1: {
-        position: '1_8',
-        img: '&#9820;',
-        captured: false,
-        moved: false,
-        type: 'b_rook'
-      },
-      b_rook2: {
-        position: '8_8',
-        img: '&#9820;',
-        captured: false,
-        moved: false,
-        type: 'b_rook'
-      },
-      b_pawn1: {
-        position: '1_7',
-        img: '&#9823;',
-        captured: false,
-        type: 'b_pawn',
-        moved: false
-      },
-      b_pawn2: {
-        position: '2_7',
-        img: '&#9823;',
-        captured: false,
-        type: 'b_pawn',
-        moved: false
-      },
-      b_pawn3: {
-        position: '3_7',
-        img: '&#9823;',
-        captured: false,
-        type: 'b_pawn',
-        moved: false
-      },
-      b_pawn4: {
-        position: '4_7',
-        img: '&#9823;',
-        captured: false,
-        type: 'b_pawn',
-        moved: false
-      },
-      b_pawn5: {
-        position: '5_7',
-        img: '&#9823;',
-        captured: false,
-        type: 'b_pawn',
-        moved: false
-      },
-      b_pawn6: {
-        position: '6_7',
-        img: '&#9823;',
-        captured: false,
-        type: 'b_pawn',
-        moved: false
-      },
-      b_pawn7: {
-        position: '7_7',
-        img: '&#9823;',
-        captured: false,
-        type: 'b_pawn',
-        moved: false
-      },
-      b_pawn8: {
-        position: '8_7',
-        img: '&#9823;',
-        captured: false,
-        type: 'b_pawn',
-        moved: false
-      }
-
-    }
+    pieces: pieces
   },
 
   methods: {
+    createboard: function() {
+      let game = $('#game');
+      for (let y = 8; y >= 1; y--) {
+        game.append("<div class='cellprefix'>" + y + "</div>");
+        for (let x = 1; x <= 8; x++) {
+          let color = (x + y) % 2 == 0 ? 'grey' : '';
+          game.append("<div class='gamecell " + color + "' id='" + x + "_" + y + "'></div>");
+        }
+        game.append('<br>');
+      }
+      game.append("<div class='cellprefix'></div>");
+      let letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+      for (let i = 0; i < letters.length; i++) {
+        game.append("<div class='cellprefix'>" + letters[i] + "</div>");
+      }
+      game.append('<br>');
+    },
+
     gamesetup: function() {
+      main.methods.createboard();
       $('.gamecell').attr('chess', 'null');
       for (let gamepiece in main.variables.pieces) {
         $('#' + main.variables.pieces[gamepiece].position).html(main.variables.pieces[gamepiece].img);
@@ -289,11 +80,6 @@ let main = {
             return (parseInt(position.x) + parseInt(val.x)) + '_' + (parseInt(position.y) + parseInt(val.y));
           });
         }
-        /*
-          coordinates = [{ x: 1, y: 1 },{ x: 1, y: 0 },{ x: 1, y: -1 },{ x: 0, y: -1 },{ x: -1, y: -1 },{ x: -1, y: 0 },{ x: -1, y: 1 },{ x: 0, y: 1 }].map(function(val){
-            return (parseInt(position.x) + parseInt(val.x)) + '_' + (parseInt(position.y) + parseInt(val.y));
-          });
-        */
           options = (main.methods.options(startpoint, coordinates, main.variables.pieces[selectedpiece].type)).slice(0);
           main.variables.highlighted = options.slice(0);
           main.methods.togglehighlight(options);
@@ -574,14 +360,11 @@ let main = {
         }).filter(val => { // algorithm to determine line-of-sight movement options for bishop/rook/queen;
           if (flag == false){
             if ($('#' + val).attr('chess') == 'null'){
-              console.log(val)
               return val;
             } else if (($('#' + val).attr('chess')).slice(0,1) == 'b') {
               flag = true;
-              console.log(val)
               return val;
             } else if (($('#' + val).attr('chess')).slice(0,1) == 'w') {
-              console.log(val+'-3')
               flag = true;
             }
           }
@@ -640,13 +423,6 @@ let main = {
         main.variables.pieces[selectedpiece.name].moved = true;
         // captured piece
         main.variables.pieces[target.name].captured = true;
-        /*
-        // toggle highlighted coordinates
-        main.methods.togglehighlight(main.variables.highlighted);
-        main.variables.highlighted.length = 0;
-        // set the selected piece to '' again
-        main.variables.selectedpiece = '';
-        */
       
     },
 
@@ -662,14 +438,6 @@ let main = {
       $('#' + main.variables.selectedpiece).attr('chess','null');
       main.variables.pieces[selectedpiece].position = target.id;
       main.variables.pieces[selectedpiece].moved = true;
-
-      /*
-      // toggle highlighted coordinates
-      main.methods.togglehighlight(main.variables.highlighted);
-      main.variables.highlighted.length = 0;
-      // set the selected piece to '' again
-      main.variables.selectedpiece = '';
-      */
     },
 
     endturn: function(){
@@ -722,7 +490,7 @@ let main = {
 $(document).ready(function() {
   main.methods.gamesetup();
 
-  $('.gamecell').click(function(e) {
+  $('#game').on('click', '.gamecell', function(e) {
 
     var selectedpiece = {
       name: '',
@@ -750,8 +518,8 @@ $(document).ready(function() {
 
       if (selectedpiece.name == 'w_king' || selectedpiece.name == 'b_king'){
         
-        let t0 = (selectedpiece.name = 'w_king');
-        let t1 = (selectedpiece.name = 'b_king');
+        let t0 = (selectedpiece.name == 'w_king');
+        let t1 = (selectedpiece.name == 'b_king');
         let t2 = (main.variables.pieces[selectedpiece.name].moved == false);
         let t3 = (main.variables.pieces['b_rook2'].moved == false);
         let t4 = (main.variables.pieces['w_rook2'].moved == false);
